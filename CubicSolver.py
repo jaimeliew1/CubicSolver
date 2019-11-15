@@ -54,15 +54,46 @@ def solve_class1(a, b, c, d):
 
 
 def solve_class2(a, b, c, d):
-    pass
+    delta = np.sqrt((b**2 - 3 * a * c) / (9 * a**2))
+    x_n = -b / (3 * a)
+    y_n = a * x_n**3 + b * x_n**2 + c * x_n + d
+    h = 2 * a * delta**3
+
+    Z = 1 / 3 * np.arccosh(-y_n / h)
+    alpha = x_n + 2 * delta * np.cosh(Z)
+    beta = x_n - delta * (np.cosh(Z) + 1j * np.sqrt(3) * np.sinh(Z))
+    gamma = x_n - delta * (np.cosh(Z) - 1j * np.sqrt(3) * np.sinh(Z))
+
+    return [alpha, beta, gamma]
 
 
 def solve_class3(a, b, c, d):
-    pass
+    delta = np.sqrt((b**2 - 3 * a * c) / (9 * a**2))
+    x_n = -b / (3 * a)
+    y_n = a * x_n**3 + b * x_n**2 + c * x_n + d
+    h = 2 * a * delta**3
+
+    Z = 1 / 3 * np.arccosh(y_n / h)
+    alpha = x_n - 2 * delta * np.cosh(Z)
+    beta = x_n + delta * (np.cosh(Z) + 1j * np.sqrt(3) * np.sinh(Z))
+    gamma = x_n + delta * (np.cosh(Z) - 1j * np.sqrt(3) * np.sinh(Z))
+
+    return [alpha, beta, gamma]
 
 
 def solve_class4(a, b, c, d):
-    pass
+    delta = np.sqrt((b**2 - 3 * a * c) / (9 * a**2))
+    x_n = -b / (3 * a)
+    y_n = a * x_n**3 + b * x_n**2 + c * x_n + d
+    h = 2 * a * delta**3
+
+    Z = 1 / 3 * np.arccos(y_n / h)
+    Z_ = 1 / 3 * np.arccos(-y_n / h)
+    alpha = x_n + 2 * delta * np.cos(Z)
+    beta = x_n + 2 * delta * np.cos(Z_ + 2 / 3 * np.pi)
+    gamma = x_n + 2 * delta * np.cos(Z_ - 2 / 3 * np.pi)
+
+    return [alpha, beta, gamma]
 
 
 solver = [solve_class0, solve_class1, solve_class2, solve_class3, solve_class4]
