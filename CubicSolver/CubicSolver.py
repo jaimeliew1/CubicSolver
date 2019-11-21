@@ -28,8 +28,10 @@ def classify(a, b, c, d):
         return 2
     elif y_n / h > 1:
         return 3
-    elif abs(y_n / h) < 1:
+    elif abs(y_n / h) <= 1:
         return 4
+    else:
+        breakpoint()
 
 
 def solve_class0(a, b, c, d):
@@ -101,7 +103,7 @@ solver = [solve_class0, solve_class1, solve_class2, solve_class3, solve_class4]
 
 def solve(a, b, c, d):
     Class = classify(a, b, c, d)
-    print(f'class: {Class}')
+    # print(f'class: {Class}')
     X = solver[Class](a, b, c, d)
     return X
 
