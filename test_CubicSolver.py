@@ -35,3 +35,15 @@ def test_class4():
     np.testing.assert_almost_equal(x1, -1)
     np.testing.assert_almost_equal(x2, -3)
     np.testing.assert_almost_equal(x3, -2)
+
+
+def test_1000_random_cubics():
+    N = 1000
+    for i in range(N):
+        coeffs = np.random.randint(-100, 100, 4)
+
+        soln = CubicSolver.solve(*coeffs)
+
+        for x in soln:
+            val = np.polyval(coeffs, x)
+            np.testing.assert_almost_equal(val, 0)

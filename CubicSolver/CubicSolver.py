@@ -31,7 +31,7 @@ def classify(a, b, c, d):
     elif abs(y_n / h) <= 1:
         return 4
     else:
-        breakpoint()
+        raise(ValueError('Cubic cannot be classified.'))
 
 
 def solve_class0(a, b, c, d):
@@ -89,11 +89,10 @@ def solve_class4(a, b, c, d):
     y_n = a * x_n**3 + b * x_n**2 + c * x_n + d
     h = 2 * a * delta**3
 
-    Z = 1 / 3 * np.arccos(y_n / h)
-    Z_ = 1 / 3 * np.arccos(-y_n / h)
+    Z = 1 / 3 * np.arccos(-y_n / h)
     alpha = x_n + 2 * delta * np.cos(Z)
-    beta = x_n + 2 * delta * np.cos(Z_ + 2 / 3 * np.pi)
-    gamma = x_n + 2 * delta * np.cos(Z_ - 2 / 3 * np.pi)
+    beta = x_n + 2 * delta * np.cos(Z + 2 / 3 * np.pi)
+    gamma = x_n + 2 * delta * np.cos(Z - 2 / 3 * np.pi)
 
     return [alpha, beta, gamma]
 
@@ -103,7 +102,6 @@ solver = [solve_class0, solve_class1, solve_class2, solve_class3, solve_class4]
 
 def solve(a, b, c, d):
     Class = classify(a, b, c, d)
-    # print(f'class: {Class}')
     X = solver[Class](a, b, c, d)
     return X
 
